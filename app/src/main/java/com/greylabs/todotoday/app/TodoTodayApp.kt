@@ -1,4 +1,4 @@
-package com.greylabs.todotoday.application
+package com.greylabs.todotoday.app
 
 import android.app.Application
 import com.greylabs.todotoday.di.appModule

@@ -1,7 +1,9 @@
 package com.greylabs.todotoday.screens.tasks
 
 import androidx.lifecycle.*
+import com.greylabs.todotoday.base.ProgressState
 import com.greylabs.todotoday.data.TestingRepository
+import com.greylabs.todotoday.screens.tasks.data_model.TaskDataModel
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -9,33 +11,41 @@ import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
-class TasksViewModel(val testingRepo: TestingRepository) : ViewModel(), LifecycleObserver {
+class TasksViewModel(private val testingRepo: TestingRepository) : ViewModel(), LifecycleObserver {
 
     private var text: MutableLiveData<String> = MutableLiveData()
+    private var tasks: MutableLiveData<MutableList<TaskDataModel>> = MutableLiveData()
+    private var progressState: MutableLiveData<ProgressState> = MutableLiveData()
     private var disposables = CompositeDisposable()
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun loadData() {
-        disposables += Observable.range(1, 5)
+        disposables += Observable.just(testingRepo.getTaskList())
+                .delay(4, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .concatMap {
-                    Observable.just(it).delay(1, TimeUnit.SECONDS)
+                .doOnSubscribe {
+                    progressState.postValue(ProgressState.Loading())
                 }
-                .startWith(
-                    Observable.just(0)
-                )
-                .subscribe { data ->
-                    text.postValue("Text $data")
+                .subscribe{loadedTasks ->
+                    progressState.postValue(ProgressState.Done())
+                    tasks.postValue(loadedTasks)
                 }
+    }
+
+    fun getTasksText(): MutableLiveData<String> {
+        return text
+    }
+
+    fun getTasks(): MutableLiveData<MutableList<TaskDataModel>> {
+        return tasks
+    }
+
+    fun getProgressState(): MutableLiveData<ProgressState> {
+        return progressState
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     fun dispose() {
         disposables.dispose()
-    }
-
-    fun getTasksText(): MutableLiveData<String> {
-        return text
     }
 }
