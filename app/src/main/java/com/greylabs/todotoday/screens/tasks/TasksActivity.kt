@@ -13,6 +13,7 @@ import java.util.*
 
 class TasksActivity : AppCompatActivity(), BaseView, TasksNavigator {
 
+
     lateinit var viewModel: TasksViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,5 +50,9 @@ class TasksActivity : AppCompatActivity(), BaseView, TasksNavigator {
 
     override fun navigateToTaskDescription(id: UUID) {
         startTaskDetailsActivity(this)
+    }
+
+    override fun navigateToInfo() {
+
     }
 }

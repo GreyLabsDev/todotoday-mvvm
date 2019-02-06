@@ -6,4 +6,5 @@ interface TasksNavigator {
 
     fun navigateToTaskDescription(id: UUID)
 
+    fun navigateToInfo()
 }
