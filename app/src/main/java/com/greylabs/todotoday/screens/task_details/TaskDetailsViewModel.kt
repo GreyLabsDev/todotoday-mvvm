@@ -1,0 +1,47 @@
+package com.greylabs.todotoday.screens.task_details
+
+import androidx.lifecycle.*
+import com.greylabs.todotoday.base.BaseViewModel
+import com.greylabs.todotoday.base.ProgressState
+import com.greylabs.todotoday.screens.tasks.data_model.TaskDataModel
+import io.reactivex.Observable
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.plusAssign
+import java.util.*
+import java.util.concurrent.TimeUnit
+
+class TaskDetailsViewModel: ViewModel(), LifecycleObserver, BaseViewModel {
+
+    private var task: MutableLiveData<TaskDataModel> = MutableLiveData()
+    private var progressState: MutableLiveData<ProgressState> = MutableLiveData()
+
+    private var disposables = CompositeDisposable()
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+    fun loadTaskData() {
+        disposables += Observable.just(TaskDataModel(
+                UUID.randomUUID(),
+                "Test task",
+                "Test task description",
+                Calendar.getInstance().time
+        )).doOnSubscribe{
+            progressState.postValue(ProgressState.Loading())
+        }.delay(3, TimeUnit.SECONDS).subscribe { taskData ->
+            progressState.postValue(ProgressState.Done())
+            task.postValue(taskData)
+        }
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    override fun dispose() {
+        disposables.dispose()
+    }
+
+    fun getTask(): MutableLiveData<TaskDataModel> {
+        return task
+    }
+
+    fun getProgressState(): MutableLiveData<ProgressState> {
+        return progressState
+    }
+}
