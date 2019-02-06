@@ -3,17 +3,16 @@ package com.greylabs.todotoday.screens.task_detail
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.transition.TransitionManager
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.greylabs.todotoday.R
 import com.greylabs.todotoday.base.BaseView
 import com.greylabs.todotoday.base.ProgressState
 import com.greylabs.todotoday.screens.task_details.TaskDetailsViewModel
 import kotlinx.android.synthetic.main.activity_task_details.*
+import org.koin.android.viewmodel.ext.android.viewModel
 
 fun startTaskDetailsActivity(context: Context) {
     val intent = Intent(context, TaskDetailsActivity::class.java)
@@ -22,12 +21,11 @@ fun startTaskDetailsActivity(context: Context) {
 
 class TaskDetailsActivity : AppCompatActivity(), BaseView {
 
-    private lateinit var viewModel: TaskDetailsViewModel
+    val viewModel: TaskDetailsViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_task_details)
-        viewModel = ViewModelProviders.of(this).get(TaskDetailsViewModel::class.java)
         lifecycle.addObserver(viewModel)
 
         initToolbar()

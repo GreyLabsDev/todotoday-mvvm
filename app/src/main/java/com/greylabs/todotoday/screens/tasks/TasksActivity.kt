@@ -4,22 +4,21 @@ import android.os.Bundle
 import android.transition.TransitionManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.greylabs.todotoday.R
 import com.greylabs.todotoday.base.BaseView
 import com.greylabs.todotoday.screens.task_detail.startTaskDetailsActivity
 import kotlinx.android.synthetic.main.activity_tasks.*
+import org.koin.android.viewmodel.ext.android.viewModel
+
 import java.util.*
 
 class TasksActivity : AppCompatActivity(), BaseView, TasksNavigator {
 
-
-    lateinit var viewModel: TasksViewModel
+    val viewModel: TasksViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tasks)
-        viewModel = ViewModelProviders.of(this).get(TasksViewModel::class.java)
         lifecycle.addObserver(viewModel)
 
         initViews()
