@@ -2,6 +2,7 @@ package com.greylabs.todotoday.screens.tasks
 
 import androidx.lifecycle.*
 import com.greylabs.todotoday.base.ProgressState
+import com.greylabs.todotoday.data.DatabaseRepository
 import com.greylabs.todotoday.data.TestingRepository
 import com.greylabs.todotoday.screens.tasks.data_model.TaskDataModel
 import io.reactivex.Observable
@@ -11,7 +12,7 @@ import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
-class TasksViewModel(private val testingRepo: TestingRepository) : ViewModel(), LifecycleObserver {
+class TasksActivityViewModel(private val testingRepo: DatabaseRepository) : ViewModel(), LifecycleObserver {
 
     private var text: MutableLiveData<String> = MutableLiveData()
     private var tasks: MutableLiveData<MutableList<TaskDataModel>> = MutableLiveData()
@@ -20,7 +21,7 @@ class TasksViewModel(private val testingRepo: TestingRepository) : ViewModel(), 
 
     fun loadData() {
         disposables += Observable.just(testingRepo.getTaskList())
-                .delay(4, TimeUnit.SECONDS)
+                .delay(3, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe {

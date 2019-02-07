@@ -10,15 +10,16 @@ import com.greylabs.todotoday.R
 import com.greylabs.todotoday.base.BaseView
 import com.greylabs.todotoday.base.ProgressState
 import com.greylabs.todotoday.screens.task_detail.startTaskDetailsActivity
+import com.greylabs.todotoday.screens.tasks.adapter.TasksAdapter
 import com.greylabs.todotoday.screens.tasks.data_model.TaskDataModel
 import kotlinx.android.synthetic.main.activity_tasks.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 import java.util.*
 
-class TasksActivity : AppCompatActivity(), BaseView, TasksNavigator {
+class TasksActivityView : AppCompatActivity(), BaseView, TasksActivityNavigator {
 
-    val viewModel: TasksViewModel by viewModel()
+    val viewModel: TasksActivityViewModel by viewModel()
 
     private lateinit var tasksAdapter: TasksAdapter
 
@@ -36,7 +37,7 @@ class TasksActivity : AppCompatActivity(), BaseView, TasksNavigator {
     override fun initToolbar() {}
 
     override fun initViews() {
-        tasksAdapter = TasksAdapter(this@TasksActivity)
+        tasksAdapter = TasksAdapter(this@TasksActivityView)
         recyclerTasksList.adapter = tasksAdapter
         recyclerTasksList.layoutManager = LinearLayoutManager(this)
     }

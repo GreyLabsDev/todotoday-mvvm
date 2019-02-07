@@ -3,18 +3,18 @@ package com.greylabs.todotoday.data
 import com.greylabs.todotoday.screens.tasks.data_model.TaskDataModel
 import java.util.*
 
-interface TestingRepository {
+interface DatabaseRepository {
     fun getTaskList(): MutableList<TaskDataModel>
 }
 
-class TestingRepositoryImpl: TestingRepository {
+class DatabaseRepositoryImpl : DatabaseRepository {
     override fun getTaskList(): MutableList<TaskDataModel> {
         val tasks: MutableList<TaskDataModel> = mutableListOf()
         for (i in 0..5) {
             tasks.add(TaskDataModel(
                     UUID.randomUUID(),
-                    "Test task #$i",
-                    "Test task description",
+                    "Working task #$i",
+                    "Working task description",
                     Calendar.getInstance().time
             ))
         }

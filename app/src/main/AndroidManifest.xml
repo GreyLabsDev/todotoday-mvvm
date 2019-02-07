@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".screens.tasks.TasksActivity"
+        <activity android:name=".screens.tasks.TasksActivityView"
             android:screenOrientation="portrait"
             android:launchMode="singleTask">
             <intent-filter>

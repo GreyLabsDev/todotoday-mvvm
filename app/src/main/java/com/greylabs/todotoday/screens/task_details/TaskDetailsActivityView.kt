@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
 import com.greylabs.todotoday.R
 import com.greylabs.todotoday.base.BaseView
 import com.greylabs.todotoday.base.ProgressState
-import com.greylabs.todotoday.screens.task_details.TaskDetailsViewModel
+import com.greylabs.todotoday.screens.task_details.TaskDetailsActivityViewModel
 import kotlinx.android.synthetic.main.activity_task_details.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -21,7 +21,7 @@ fun startTaskDetailsActivity(context: Context) {
 
 class TaskDetailsActivity : AppCompatActivity(), BaseView {
 
-    val viewModel: TaskDetailsViewModel by viewModel()
+    val viewModel: TaskDetailsActivityViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

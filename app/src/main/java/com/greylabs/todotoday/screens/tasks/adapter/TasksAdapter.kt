@@ -1,4 +1,4 @@
-package com.greylabs.todotoday.screens.tasks
+package com.greylabs.todotoday.screens.tasks.adapter
 
 import android.content.Context
 import android.view.View
@@ -14,8 +14,9 @@ class TasksAdapter(val context: Context) : RecyclerView.Adapter<TasksAdapter.Tas
     var tasksList: MutableList<TaskDataModel> = mutableListOf()
 
     fun addTasks(newTasks: MutableList<TaskDataModel>) {
+        val startPosition = itemCount
         tasksList.addAll(newTasks)
-        notifyDataSetChanged()
+        notifyItemRangeChanged(startPosition, newTasks.size)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TasksViewHolder {

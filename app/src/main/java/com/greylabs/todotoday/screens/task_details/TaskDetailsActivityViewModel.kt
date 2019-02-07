@@ -10,7 +10,7 @@ import io.reactivex.rxkotlin.plusAssign
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class TaskDetailsViewModel: ViewModel(), LifecycleObserver, BaseViewModel {
+class TaskDetailsActivityViewModel: ViewModel(), LifecycleObserver, BaseViewModel {
 
     private var task: MutableLiveData<TaskDataModel> = MutableLiveData()
     private var progressState: MutableLiveData<ProgressState> = MutableLiveData()
