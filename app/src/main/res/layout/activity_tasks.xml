@@ -15,6 +15,25 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:padding="8dp"
+            android:textStyle="bold"
+            android:textSize="24dp"
+            android:text="Tasks"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/colorBlack"/>
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -24,7 +43,7 @@
                 android:layout_margin="16dp"
                 android:id="@+id/recyclerTasksList"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="match_parent"/>
 
             <RelativeLayout
                 android:id="@+id/progressBarContainer"
@@ -39,37 +58,28 @@
                     android:layout_height="64dp" />
             </RelativeLayout>
 
-
-
         </FrameLayout>
 
         <LinearLayout
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnLoadTasks"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabAddTask"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                app:fabCustomSize="64dp"
+                android:layout_marginStart="16dp"
+                app:elevation="0dp"
                 android:layout_marginEnd="16dp"
-                android:text="Load tasks"/>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnOpenTask"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                app:textAllCaps="false"
-                android:text="Open test task"/>
+                android:layout_gravity="center_horizontal|bottom"
+                android:src="@drawable/ic_add"/>
 
         </LinearLayout>
 
-
     </LinearLayout>
-
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

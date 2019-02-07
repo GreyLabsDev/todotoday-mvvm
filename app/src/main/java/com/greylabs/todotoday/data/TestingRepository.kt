@@ -16,7 +16,7 @@ class TestingRepositoryImpl: TestingRepository {
                     UUID.randomUUID(),
                     "Test task #$i",
                     "Test task description",
-                    Calendar.getInstance().time
+                    Calendar.getInstance().time.toString()
             ))
         }
         return tasks

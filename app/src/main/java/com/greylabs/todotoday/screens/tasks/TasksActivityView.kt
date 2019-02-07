@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.greylabs.todotoday.R
 import com.greylabs.todotoday.base.BaseView
 import com.greylabs.todotoday.base.ProgressState
+import com.greylabs.todotoday.screens.add_task.startAddTaskActivity
 import com.greylabs.todotoday.screens.task_detail.startTaskDetailsActivity
+import com.greylabs.todotoday.screens.tasks.adapter.ItemClickListener
 import com.greylabs.todotoday.screens.tasks.adapter.TasksAdapter
 import com.greylabs.todotoday.screens.tasks.data_model.TaskDataModel
 import kotlinx.android.synthetic.main.activity_tasks.*
@@ -18,6 +20,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.*
 
 class TasksActivityView : AppCompatActivity(), BaseView, TasksActivityNavigator {
+
 
     val viewModel: TasksActivityViewModel by viewModel()
 
@@ -43,11 +46,13 @@ class TasksActivityView : AppCompatActivity(), BaseView, TasksActivityNavigator 
     }
 
     override fun initListeners() {
-        btnOpenTask.setOnClickListener {
-            navigateToTaskDescription(UUID.randomUUID())
+        fabAddTask.setOnClickListener {
+            navigateToAddTask()
         }
-        btnLoadTasks.setOnClickListener {
-            viewModel.loadData()
+        tasksAdapter.itemClickListener = object : ItemClickListener {
+            override fun onItemClick(task: TaskDataModel) {
+                navigateToTaskDescription(task.id)
+            }
         }
     }
 
@@ -63,7 +68,8 @@ class TasksActivityView : AppCompatActivity(), BaseView, TasksActivityNavigator 
                     progressBarContainer.visibility = View.GONE
                 }
                 else -> {
-
+                    TransitionManager.beginDelayedTransition(rootLayout)
+                    progressBarContainer.visibility = View.GONE
                 }
             }
         })
@@ -77,10 +83,14 @@ class TasksActivityView : AppCompatActivity(), BaseView, TasksActivityNavigator 
     }
 
     override fun navigateToTaskDescription(id: UUID) {
-        startTaskDetailsActivity(this)
+        startTaskDetailsActivity(this, id)
     }
 
     override fun navigateToInfo() {
 
+    }
+
+    override fun navigateToAddTask() {
+        startAddTaskActivity(this@TasksActivityView)
     }
 }

@@ -17,29 +17,42 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textTaskName"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Task name"
-                android:padding="8dp"
-                android:layout_marginBottom="16dp"/>
+                android:orientation="vertical"
+                android:background="@drawable/bg_task_border"
+                android:padding="16dp">
 
-            <TextView
-                android:id="@+id/textTaskDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Task description"
-                android:padding="8dp"
-                android:layout_marginBottom="16dp"/>
+                <TextView
+                    android:id="@+id/textTaskName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Task name"
+                    android:padding="8dp"
+                    android:layout_marginBottom="16dp"/>
+
+                <TextView
+                    android:id="@+id/textTaskDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Task description"
+                    android:padding="8dp" />
+
+            </LinearLayout>
+
+
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnReloadData"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:id="@+id/btnDeleteTask"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 app:textAllCaps="false"
-                android:text="Reload data"/>
+                app:icon="@drawable/ic_delete"
+                android:layout_marginTop="16dp"
+                android:text="Delete task"/>
 
         </LinearLayout>
 

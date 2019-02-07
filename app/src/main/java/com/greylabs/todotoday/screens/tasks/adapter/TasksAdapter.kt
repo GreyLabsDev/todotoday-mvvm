@@ -12,11 +12,12 @@ import com.greylabs.todotoday.screens.tasks.data_model.TaskDataModel
 class TasksAdapter(val context: Context) : RecyclerView.Adapter<TasksAdapter.TasksViewHolder>() {
 
     var tasksList: MutableList<TaskDataModel> = mutableListOf()
+    var itemClickListener: ItemClickListener? = null
 
     fun addTasks(newTasks: MutableList<TaskDataModel>) {
-        val startPosition = itemCount
+        tasksList.clear()
         tasksList.addAll(newTasks)
-        notifyItemRangeChanged(startPosition, newTasks.size)
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TasksViewHolder {
@@ -31,6 +32,9 @@ class TasksAdapter(val context: Context) : RecyclerView.Adapter<TasksAdapter.Tas
 
     override fun onBindViewHolder(holder: TasksViewHolder, position: Int) {
         holder.bind(tasksList[position])
+        holder.setOnClickListener {
+            itemClickListener?.onItemClick(tasksList[position])
+        }
     }
 
     inner class TasksViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -38,6 +42,12 @@ class TasksAdapter(val context: Context) : RecyclerView.Adapter<TasksAdapter.Tas
 
         fun bind(data: TaskDataModel) {
             textTitle.text = data.name
+        }
+
+        fun setOnClickListener(callback: () -> Unit) {
+            textTitle.setOnClickListener {
+                callback()
+            }
         }
     }
 }

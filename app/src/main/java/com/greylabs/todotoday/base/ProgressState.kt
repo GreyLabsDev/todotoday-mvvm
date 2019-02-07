@@ -5,4 +5,5 @@ sealed class ProgressState {
     class Done: ProgressState()
     class Loading: ProgressState()
     class Error: ProgressState()
+    class Finish: ProgressState()
 }

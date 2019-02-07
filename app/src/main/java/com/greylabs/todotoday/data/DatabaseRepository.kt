@@ -15,7 +15,7 @@ class DatabaseRepositoryImpl : DatabaseRepository {
                     UUID.randomUUID(),
                     "Working task #$i",
                     "Working task description",
-                    Calendar.getInstance().time
+                    Calendar.getInstance().time.toString()
             ))
         }
         return tasks

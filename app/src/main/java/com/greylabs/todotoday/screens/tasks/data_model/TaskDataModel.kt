@@ -6,5 +6,5 @@ data class TaskDataModel(
         var id: UUID,
         var name: String,
         var description: String,
-        var addDate: Date
+        var addDate: String
 )

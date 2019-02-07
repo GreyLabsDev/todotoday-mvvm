@@ -9,7 +9,13 @@
         android:id="@+id/textTaskTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:padding="8dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/bg_ripple"
+        android:clickable="true"
+        android:textSize="20dp"
+        android:textColor="@color/colorBlack"
         />
+
 
 </LinearLayout>
