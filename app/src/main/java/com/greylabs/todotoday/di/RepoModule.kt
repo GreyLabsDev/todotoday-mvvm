@@ -8,7 +8,7 @@ import org.koin.dsl.module.module
 
 val repoModule = module {
 
-    single<TestingRepository> { TestingRepositoryImpl() }
+    factory<TestingRepository> { TestingRepositoryImpl() }
 
     single<DatabaseRepository> { DatabaseRepositoryImpl() }
 

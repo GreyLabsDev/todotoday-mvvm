@@ -9,5 +9,5 @@ val viewModelsModule = module {
 
     viewModel { TasksActivityViewModel(get()) }
 
-    viewModel { TaskDetailsActivityViewModel() }
+    viewModel { TaskDetailsActivityViewModel(get(), get()) }
 }

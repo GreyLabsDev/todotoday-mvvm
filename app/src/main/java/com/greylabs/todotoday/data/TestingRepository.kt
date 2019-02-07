@@ -8,6 +8,7 @@ interface TestingRepository {
 }
 
 class TestingRepositoryImpl: TestingRepository {
+
     override fun getTaskList(): MutableList<TaskDataModel> {
         val tasks: MutableList<TaskDataModel> = mutableListOf()
         for (i in 0..5) {
