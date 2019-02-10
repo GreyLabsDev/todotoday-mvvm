@@ -1,7 +1,7 @@
 # todotoday-mvvm
 TodoToday-MVVM, Sample Android MVVM application
 
-Example contains MVVM implementation for Android applications with using this technologies:
+Example contains MVVM implementation for Android applications with this technologies:
 
 - Kotlin
 - RxJava2, RxKotlin
